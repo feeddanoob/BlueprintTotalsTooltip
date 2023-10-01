@@ -25,7 +25,7 @@ namespace BlueprintTotalsTooltip.FrameChangeNotifiers
 			List<CodeInstruction> instrList = new List<CodeInstruction>(instructions);
 			for (int i = 0; i < instrList.Count; i++)
 			{
-				if (instrList[i].opcode == OpCodes.Stfld && instrList[i].operand == typeof(Frame).GetField("workDone") &&
+				if (instrList[i].opcode == OpCodes.Stfld && (FieldInfo)instrList[i].operand == typeof(Frame).GetField("workDone") &&
 					instrList[i-1].opcode == OpCodes.Add)
 				{
 					yield return new CodeInstruction(OpCodes.Ldloc_1);

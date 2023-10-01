@@ -60,32 +60,6 @@
     <Compile Include="AssetLoader.cs" />
     <Compile Include="TotalsTooltipDrawer.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>LocalDev\Refs\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>LocalDev\Refs\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="HugsLib">
-      <HintPath>LocalDev\Refs\HugsLib.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="UnityEngine">
-      <HintPath>LocalDev\Refs\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>LocalDev\Refs\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>LocalDev\Refs\UnityEngine.IMGUIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>LocalDev\Refs\UnityEngine.TextRenderingModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>@echo Reference copying is now manual!</PreBuildEvent>
@@ -98,10 +72,10 @@ SET Version=v-latest
 
 @echo ...
 
-@echo set lpath vars from LocalDev storage...
-set /p RIM_DIR=&lt;"$(ProjectDir)LocalDev\rim_dir.txt"
-set /p ZA_DIR=&lt;"$(ProjectDir)LocalDev\7za_dir.txt"
-set /p DIST_DIR=&lt;"$(ProjectDir)LocalDev\dist_dir.txt"
+::@echo set lpath vars from LocalDev storage...
+::set /p RIM_DIR=&lt;"$(ProjectDir)LocalDev\rim_dir.txt"
+::set /p ZA_DIR=&lt;"$(ProjectDir)LocalDev\7za_dir.txt"
+::set /p DIST_DIR=&lt;"$(ProjectDir)LocalDev\dist_dir.txt"
 
 
 @echo Deleting old assemblies from Distribution...
@@ -111,17 +85,17 @@ del /q "$(ProjectDir)Distribution\%25ModName%25\%25Version%25\Assemblies\*"
 if not exist "$(ProjectDir)Distribution\%25ModName%25\%25ModName%25\Assemblies" mkdir "$(ProjectDir)Distribution\%25ModName%25\%25Version%25\Assemblies"
 copy /Y "$(TargetDir)"%25ModName%25*.dll "$(ProjectDir)Distribution\%25ModName%25\%25Version%25\Assemblies"
 
-@echo deleting previous build ...
-if exist "$(ProjectDir)LocalDev\%25ModName%25.zip" del "$(ProjectDir)LocalDev\%25ModName%25.zip"
-@echo packaging new build...
-call "%25ZA_DIR%25\7za.exe" a -tzip -r  "$(ProjectDir)LocalDev\%25ModName%25.zip" "$(ProjectDir)Distribution\*.*"
+::@echo deleting previous build ...
+::if exist "$(ProjectDir)LocalDev\%25ModName%25.zip" del "$(ProjectDir)LocalDev\%25ModName%25.zip"
+::@echo packaging new build...
+::call "%25ZA_DIR%25\7za.exe" a -tzip -r  "$(ProjectDir)LocalDev\%25ModName%25.zip" "$(ProjectDir)Distribution\*.*"
 
-if exist "%25RIM_DIR%25\Mods\%25ModName%25" (
-@echo Deleting old mod files
-rmdir /s /q "%25RIM_DIR%25\Mods\%25ModName%25"
-)
-@echo Deploy $(ProjectDir) Distribution files to test env:  %25RIM_DIR%25\Mods...
-xcopy /E /Y "$(ProjectDir)Distribution\*" "%25RIM_DIR%25\Mods"
+::if exist "%25RIM_DIR%25\Mods\%25ModName%25" (
+::@echo Deleting old mod files
+::rmdir /s /q "%25RIM_DIR%25\Mods\%25ModName%25"
+::)
+::@echo Deploy $(ProjectDir) Distribution files to test env:  %25RIM_DIR%25\Mods...
+::xcopy /E /Y "$(ProjectDir)Distribution\*" "%25RIM_DIR%25\Mods"
 
 
 @echo Build/deploy complete!</PostBuildEvent>

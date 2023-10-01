@@ -50,7 +50,7 @@ namespace BlueprintTotalsTooltip.TotalsTipSettingsUtilities
 			GUI.BeginGroup(rect);
 			Rect horizontalRect = new Rect(sliderWidth, 0f, rect.width - sliderWidth, sliderWidth);
 			Rect verticalRect = new Rect(0f, sliderWidth, sliderWidth, rect.height - sliderWidth);
-			int xSliderValue = (int)Widgets.HorizontalSlider(horizontalRect, values[0], 0, 8, true, null, null, null, 1);
+			int xSliderValue = (int)Widgets.HorizontalSlider_NewTemp(horizontalRect, values[0], 0, 8, true, null, null, null, 1);
 			int ySliderValue = (int)ToolTipSettingsUtility.LabelLessVerticalSlider(verticalRect, values[1], 0, 8, true, 1);
 			GUI.EndGroup();
 			return new int[] { xSliderValue, ySliderValue };

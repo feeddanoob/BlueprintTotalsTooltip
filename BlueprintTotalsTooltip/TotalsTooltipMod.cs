@@ -104,7 +104,7 @@ namespace BlueprintTotalsTooltip
 		private bool OpacityCustomDrawer(Rect rect)
 		{
 			Rect sliderRect = new Rect(rect.x, rect.y, rect.width - 3f, rect.height);
-			float horizontalSliderResult = Widgets.HorizontalSlider(sliderRect, HighlightOpacity.Value, 0f, 0.25f, true, null, null, null, 1f / 100f);
+			float horizontalSliderResult = Widgets.HorizontalSlider_NewTemp(sliderRect, HighlightOpacity.Value, 0f, 0.25f, true, null, null, null, 1f / 100f);
 			if (horizontalSliderResult != HighlightOpacity.Value)
 			{
 				HighlightOpacity.Value = horizontalSliderResult;
